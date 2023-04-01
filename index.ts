@@ -6,3 +6,4 @@ export {default as DismissableBox} from './src/dismissable-box.vue';
 export {default as EditableText} from './src/editable-text.vue';
 export {default as PopOver} from './src/popover.vue';
 export {default as RightClickPopUp} from './src/right-click-popup.vue';
+export {default as SearchableItems} from './src/searchable-items.vue';
