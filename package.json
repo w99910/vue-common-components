@@ -9,15 +9,15 @@
     },
     "author": "Zaw Lin Tun (Thomas)",
     "license": "MIT",
-    "dependencies": {
-        "vue-common-directives": "file:../vue-common-directives"
-    },
     "devDependencies": {
         "@vitejs/plugin-vue": "^4.1.0",
         "autoprefixer": "^10.4.14",
+        "js-utils": "file:../js-utils",
         "path": "^0.12.7",
         "tailwindcss": "^3.2.7",
-        "vite": "^4.2.1",
-        "js-utils": "file:../js-utils"
+        "vite": "^4.2.1"
+    },
+    "dependencies": {
+        "vue-common-directives": "github:w99910/vue-common-directives"
     }
 }
