@@ -12,7 +12,7 @@
     "devDependencies": {
         "@vitejs/plugin-vue": "^4.1.0",
         "autoprefixer": "^10.4.14",
-        "js-utils": "file:../js-utils",
+        "js-utils": "github:w99910/js-utils",
         "path": "^0.12.7",
         "tailwindcss": "^3.2.7",
         "vite": "^4.2.1"
