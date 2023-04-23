@@ -8,10 +8,11 @@ export default defineConfig({
         lib: {
             entry: path.resolve(__dirname, './index.ts'),
             name: 'VueCommonComponents',
-            formats: ['es'],
-            fileName: (format) => `vue-common-components.js`
+            formats: ['es', 'umd'],
+            fileName: (format) => `vue-common-components.${format}.js`
         },
         outDir: "./dist/",
+        minify: true,
         emptyOutDir: true,
     },
 });

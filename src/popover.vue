@@ -1,9 +1,8 @@
 <template>
-    <div :id="id" style="transform:translateX(0)"
-         class="z-[100] pop-over bg-[rgba(0,0,0,0.6)] w-screen h-screen top-0 left-0 fixed flex items-center justify-center">
-        <div class="p-4 rounded bg-white pop-over-contents">
-            <slot></slot>
-        </div>
+    <div :id="id"
+         class="z-[1000] bg-[rgba(0,0,0,0.6)] pop-over w-screen flex items-start py-12 justify-center h-screen top-0 left-0 fixed overflow-x-hidden overflow-y-auto ">
+        <slot class="flex flex-col py-8 items-center justify-center">
+        </slot>
     </div>
 </template>
 

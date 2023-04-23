@@ -1,5 +1,5 @@
 <template>
-    <div ref="box" class="p-2 pop-up-box flex flex-col rounded hidden fixed bg-white shadow-lg z-50"
+    <div ref="box" class="p-2 pop-up-box flex flex-col rounded hidden fixed bg-white shadow-lg z-[1000]"
          :style="{top:data.top + 'px',left:data.left + 'px'}">
         <button :class="{'border-b':index !== items.length -1}" :key="index" @click="item.handler"
                 v-for="(item,index) in items"
