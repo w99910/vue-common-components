@@ -1,12 +1,12 @@
 <template>
     <div class="flex items-center w-full gap-x-4">
-        <input v-if="type==='radio'" class="mr-4" type="radio"
+        <input v-if="type==='radio'" class="mr-2" type="radio"
                :checked="isChecked"
                :value="value"
                :class="{'bg-gray-100 text-gray-600':disabled}"
                :disabled="disabled"
                @change="onChange"/>
-        <label :class="{'w-3/12':type!=='checkbox','mb-6':errorMessage.trim() !== ''}" class="mr-4">
+        <label :class="{'w-3/12':!['checkbox','radio'].includes(type),'mb-6':errorMessage.trim() !== ''}" class="mr-4">
             {{ label }}
         </label>
         <div class="flex flex-col relative" :class="type==='checkbox' ? 'w-6 h-6' : 'w-9/12'">

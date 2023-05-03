@@ -1,5 +1,5 @@
 <template>
-    <button v-double-click="edit" ref="buttonElement">
+    <button v-double-click="edit">
         <input :title="currentValue" ref="inputElement"
                :class="[isSelect?'bg-blue-200 rounded':'text-gray-800 bg-transparent',shouldTextCenter?'text-center':'text-start']"
                :disabled="!isSelect"
@@ -43,8 +43,6 @@ const currentValue = ref(props.text);
 
 const inputElement = ref(null);
 
-const buttonElement = ref(null);
-
 const edit = function (e) {
     if (e) {
         e.preventDefault();
@@ -63,7 +61,9 @@ defineExpose({
 
 
 const update = () => {
-    emits('update', input.value)
+    if (input.value !== currentValue.value) {
+        emits('update', input.value)
+    }
     isSelect.value = false;
     currentValue.value = input.value;
     input.value = truncate(currentValue.value);

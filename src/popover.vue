@@ -8,21 +8,35 @@
 
 <script setup>
 // Emit an event called 'click-outside' when the user clicks outside the pop-over element
-import {onMounted} from "vue";
+import {onMounted, onUnmounted} from "vue";
 import {Random} from "js-utils";
 
 const emits = defineEmits(['click-outside'])
 
 const id = Random.string(10)
 
+function handleClick(e) {
+    if (e.target.classList.contains('pop-over')) {
+        emits('click-outside');
+    }
+}
+
+function handleEscape(e) {
+    if (e.key === 'Escape') {
+        emits('click-outside');
+    }
+}
+
 onMounted(() => {
     const element = document.getElementById(id)
     document.querySelector('body').appendChild(element)
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('pop-over')) {
-            emits('click-outside');
-        }
-    })
+    document.addEventListener('click', handleClick)
+    document.addEventListener('keydown', handleEscape)
+})
+
+onUnmounted(() => {
+    document.removeEventListener('click', handleClick)
+    document.removeEventListener('keydown', handleEscape)
 })
 
 </script>
