@@ -35,9 +35,24 @@ onMounted(() => {
                 popup.classList.add('hidden');
             }
         })
-        data.top = e.pageY;
-        data.left = e.pageX;
         box.value.classList.remove('hidden');
+
+        const boxWidth = box.value.getBoundingClientRect().width;
+        const boxHeight = box.value.getBoundingClientRect().height;
+        let top = e.pageY;
+        let left = e.pageX;
+        let padding = 10;
+        // check if the box is going out of the screen
+        if (top + boxHeight > window.innerHeight) {
+            top = window.innerHeight - boxHeight - padding
+        }
+
+        if (left + boxWidth > window.innerWidth) {
+            left = window.innerWidth - boxWidth - padding;
+        }
+
+        data.top = top;
+        data.left = left;
     });
 
     const onClickOutside = function (e) {
