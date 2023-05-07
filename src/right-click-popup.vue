@@ -21,7 +21,7 @@ const data = reactive({
 const box = ref(null);
 
 defineProps({
-    items: Array
+    items: Array,
 })
 
 onMounted(() => {

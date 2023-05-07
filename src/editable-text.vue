@@ -1,6 +1,7 @@
 <template>
     <button v-double-click="edit">
-        <input :title="currentValue" ref="inputElement"
+        <input :title="currentValue"
+               ref="inputElement"
                :class="[isSelect?'bg-blue-200 rounded':'text-gray-800 bg-transparent',shouldTextCenter?'text-center':'text-start']"
                :disabled="!isSelect"
                type="text"
@@ -34,7 +35,7 @@ const isSelect = ref(false);
 const vDoubleClick = DoubleClick;
 
 const truncate = (text) => {
-    return text.length > 20 ? text.substring(0, props.length) + '...' + text.substring(text.length - props.length, text.length) : text;
+    return text.length > props.length ? text.substring(0, props.length) + '...' : text;
 }
 
 const input = ref(truncate(props.text))
@@ -51,7 +52,9 @@ const edit = function (e) {
     isSelect.value = true;
     input.value = currentValue.value;
     setTimeout(() => {
-        inputElement.value.focus();
+        if (inputElement.value) {
+            inputElement.value.focus();
+        }
     }, 100);
 };
 

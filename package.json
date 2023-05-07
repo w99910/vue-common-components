@@ -17,7 +17,6 @@
         "vite": "^4.2.1"
     },
     "dependencies": {
-        "@popperjs/core": "^2.11.7",
         "js-utils": "github:w99910/js-utils",
         "vue-common-directives": "github:w99910/vue-common-directives"
     }

@@ -21,17 +21,25 @@
 import {reactive, ref} from "vue";
 import {ClickOutside} from "vue-common-directives";
 
-defineProps({
+const props = defineProps({
     shouldShowArrowIndicator: {
         type: Boolean,
         default: true
+    },
+    top: {
+        type: String,
+        default: '3rem'
+    },
+    left: {
+        type: String,
+        default: '-50%'
     }
 })
 
 const data = reactive({
     shouldShowActions: false,
-    top: '3rem',
-    left: '-50%',
+    top: props.top,
+    left: props.left,
     arrow: {
         top: '-.6rem',
         borderTop: 2,
@@ -63,7 +71,7 @@ let showActions = () => {
 
         if (rect.left + boxWidth > window.innerWidth) {
             let left = rect.left + boxWidth - window.innerWidth;
-            data.left = `calc(-50% - ${left}px)`
+            data.left = `calc(-50% - ${left}px - ${padding}px)`
         }
     }, 50)
 };
