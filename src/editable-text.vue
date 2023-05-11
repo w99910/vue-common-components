@@ -5,6 +5,7 @@
                :class="[isSelect?'bg-blue-200 rounded':'text-gray-800 bg-transparent',shouldTextCenter?'text-center':'text-start']"
                :disabled="!isSelect"
                type="text"
+               spellcheck="false"
                class="cursor-pointer py-1 focus:outline-none text-md"
                @focusout="update"
                v-model="input"/>
@@ -13,7 +14,7 @@
 
 <script setup>
 
-import {defineProps, onMounted, ref, defineEmits, watch} from 'vue';
+import {defineProps, onMounted, ref, defineEmits, watch, onUnmounted} from 'vue';
 import {DoubleClick} from "vue-common-directives";
 
 const props = defineProps({
@@ -76,10 +77,23 @@ const updateInputWidth = (value) => {
     inputElement.value.style.width = (value.length * 0.8) + 1 + 'ch';
 }
 
+function listenEnterKeyDown(e) {
+    if (e.key === 'Enter' && isSelect.value) {
+        update();
+        inputElement.value?.blur();
+    }
+}
+
 onMounted(() => {
     updateInputWidth(input.value)
     watch(input, (value) => updateInputWidth(value))
+
+    window.addEventListener('keydown', listenEnterKeyDown)
 });
+
+onUnmounted(() => {
+    window.removeEventListener('keydown', listenEnterKeyDown)
+})
 
 </script>
 
