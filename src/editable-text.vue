@@ -2,7 +2,7 @@
     <button v-double-click="edit">
         <input :title="currentValue"
                ref="inputElement"
-               :class="[isSelect?'bg-blue-200 rounded':'text-gray-800 bg-transparent',shouldTextCenter?'text-center':'text-start']"
+               :class="[isSelect?'bg-blue-200 rounded':'bg-transparent',shouldTextCenter?'text-center':'text-start']"
                :disabled="!isSelect"
                type="text"
                spellcheck="false"
