@@ -61,12 +61,19 @@ let showActions = () => {
 
         // check if the box is going out of the screen
         if (rect.top + boxHeight > window.innerHeight) {
+            // when box height is larger than the available height between rect top and window top 0,
+            // let box scrollable
+            if (boxHeight > rect.top) {
+                box.value.style.height = `${window.innerHeight - rect.top - padding}px`;
+                box.value.style.overflowY = 'scroll';
+            } else {
             data.top = `-${boxHeight + padding}px`
             data.arrow.top = 'calc(100% - 0.4rem)'
             data.arrow.borderTop = 0;
             data.arrow.borderBottom = 2;
             data.arrow.borderLeft = 0;
             data.arrow.borderRight = 2;
+          }
         }
 
         if (rect.left + boxWidth > window.innerWidth) {
