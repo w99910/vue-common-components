@@ -36,7 +36,7 @@ const emits = defineEmits(['copied']);
 
 const copy = async () => {
     try {
-        // await navigator.clipboard.writeText(props.text);
+        await navigator.clipboard.writeText(props.text);
         copied.value = true;
         emits('copied', true)
         setTimeout(() => {
