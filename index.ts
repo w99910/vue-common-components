@@ -11,4 +11,5 @@ export {default as DropdownButton} from './src/dropdown-button.vue';
 export {default as MyTable} from './src/my-table.vue'
 export {default as MyInput} from './src/my-input.vue'
 export {default as SelectButton} from './src/select-button.vue'
-export {default as CopyText} from './src/copy-text.vue'
+export {default as CopyText} from './src/copy-text.vue';
+export {default as ReadMore} from './src/read-more.vue';

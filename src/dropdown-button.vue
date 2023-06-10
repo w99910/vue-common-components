@@ -1,14 +1,17 @@
 <template>
-    <button v-click-outside="clickOutside" @click="showActions"
+    <button v-click-outside="clickOutside"
+            ref="buttonRef"
+            @click="showActions"
             class="flex items-center gap-x-2 relative">
         <slot></slot>
         <Transition name="dropdown-button">
             <div v-show="data.shouldShowActions"
-                 :style="{top:data.top,left:data.left}"
+                 :style="{top:data.top,left:data.left, padding: props.padding}"
                  ref="box"
-                 class="z-[100] text-start border absolute text-gray-700 shadow px-4 rounded bg-white">
+                 class="z-[100] text-start border absolute text-gray-700 shadow rounded bg-white">
                 <div v-show="shouldShowArrowIndicator"
                      :style="{top:data.arrow.top,
+                     right:data.arrow.right,
                         borderWidth: data.arrow.borderTop + 'px ' + data.arrow.borderRight + 'px ' + data.arrow.borderBottom + 'px ' + data.arrow.borderLeft + 'px'}"
                      class="w-4 border absolute h-4 bg-white transform rotate-45 translate-x-1/2 right-1/2"></div>
                 <slot name="items"></slot>
@@ -33,6 +36,10 @@ const props = defineProps({
     left: {
         type: String,
         default: '-50%'
+    },
+    padding: {
+        type: String,
+        default: '0px 16px'
     }
 })
 
@@ -42,15 +49,19 @@ const data = reactive({
     left: props.left,
     arrow: {
         top: '-.6rem',
+        right: '50%',
         borderTop: 2,
         borderLeft: 2,
         borderRight: 0,
         borderBottom: 0,
     }
 })
-const box = ref(null)
+const box = ref(null);
+
+const buttonRef = ref(null);
 
 let showActions = () => {
+    if (data.shouldShowActions) return;
     data.shouldShowActions = true;
     setTimeout(() => {
         const rect = box.value.getBoundingClientRect();
@@ -78,8 +89,16 @@ let showActions = () => {
 
         if (rect.left + boxWidth > window.innerWidth) {
             let left = rect.left + boxWidth - window.innerWidth;
-            data.left = `calc(-50% - ${left}px - ${padding}px)`
+            data.left = `calc(-50% - ${left}px - ${padding}px)`;
+
+            if (props.shouldShowArrowIndicator) {
+                let buttonRect = buttonRef.value.getBoundingClientRect();
+                let buttonRight = buttonRect.right;
+                let arrowRight = window.innerWidth - buttonRight;
+                data.arrow.right = `${arrowRight}px`;
+            }
         }
+
     }, 50)
 };
 const vClickOutside = ClickOutside;
