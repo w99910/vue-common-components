@@ -11,14 +11,16 @@ import {ref} from "vue";
 
 const props = defineProps(['oneTime', 'id'])
 
+const emits = defineEmits(['close'])
+
 const getStorageKey = () => 'dismissable-box-' + props.id;
 
 const close = () => {
     if (props.oneTime && props.id) {
         window.localStorage.setItem(getStorageKey(), true)
-        console.log(window.localStorage.getItem(getStorageKey()));
     }
     show.value = false;
+    emits('close', true)
 
 }
 const show = ref(!window.localStorage.getItem(getStorageKey()));
