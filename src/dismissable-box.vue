@@ -1,7 +1,7 @@
 <template>
     <div v-show="show" class="px-4 gap-x-4 flex items-center w-full py-4 rounded border">
         <slot></slot>
-        <button class="w-8 h-8" v-html="closeIcon" @click="close"/>
+        <button class="w-6 h-6" v-html="closeIcon" @click="close"/>
     </div>
 </template>
 
