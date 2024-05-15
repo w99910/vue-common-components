@@ -8,6 +8,7 @@
             <div v-show="data.shouldShowActions"
                  :style="{top:data.top,left:data.left, padding: props.padding}"
                  ref="box"
+                 :class="props.customClassForBox"
                  class="z-[100] text-start border absolute text-gray-700 shadow rounded bg-white">
                 <div v-show="shouldShowArrowIndicator"
                      :style="{top:data.arrow.top,
@@ -40,6 +41,10 @@ const props = defineProps({
     padding: {
         type: String,
         default: '0px 16px'
+    },
+    customClassForBox: {
+        type: String,
+        default: null,
     }
 })
 
